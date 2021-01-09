@@ -5,7 +5,7 @@ import javax.persistence.*;
 public class Result {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Id;
+    private Integer id;
 
     @OneToOne
     @Column
