@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 public class Game {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,8 +21,10 @@ public class Game {
     @Column
     private LocalDateTime endedAt;
 
+    @Column
     @ManyToMany
     private User player;
+
 
     @OneToOne
     private Result result;
