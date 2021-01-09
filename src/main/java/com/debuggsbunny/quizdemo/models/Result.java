@@ -8,7 +8,6 @@ public class Result {
     private Integer id;
 
     @OneToOne
-    @Column
     private Game game;
 
     @Column

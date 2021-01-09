@@ -30,8 +30,7 @@ public class Quiz {
     @Column
     private Integer numOfQuestion;
 
-    @Column
-    @OneToMany(mappedBy = "quiz")
+    @OneToMany
     private List<Question> questions;
 
     public Quiz() {

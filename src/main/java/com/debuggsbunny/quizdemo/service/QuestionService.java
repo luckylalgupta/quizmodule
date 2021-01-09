@@ -1,11 +1,11 @@
 package com.debuggsbunny.quizdemo.service;
 
-import com.debuggsbunny.quizdemo.repositories.QuestionRepo;
+import com.debuggsbunny.quizdemo.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class QuestionService {
     @Autowired
-    private QuestionRepo questionRepo;
+    private QuestionRepository questionRepository;
 }

@@ -21,15 +21,14 @@ public class Game {
     @Column
     private LocalDateTime endedAt;
 
-    @Column
-    @ManyToMany(mappedBy="game")
+    @ManyToOne
     private User player;
 
 
     @OneToOne
     private Result result;
 
-    @OneToMany(mappedBy="game")
+    @OneToMany
     private List<Response> responses;
 
     public Game() {
