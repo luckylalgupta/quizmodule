@@ -3,7 +3,7 @@ package com.debuggsbunny.quizdemo.models;
 import javax.persistence.*;
 @Entity
 public class Result {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 

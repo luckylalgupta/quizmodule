@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 public class Game {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -22,14 +22,16 @@ public class Game {
     private LocalDateTime endedAt;
 
     @Column
-    @ManyToMany
+    @ManyToMany(mappedBy="game")
     private User player;
 
 
     @OneToOne
     private Result result;
 
-    @OneToMany
+    @OneToMany(mappedBy="game")
     private List<Response> responses;
 
+    public Game() {
+    }
 }

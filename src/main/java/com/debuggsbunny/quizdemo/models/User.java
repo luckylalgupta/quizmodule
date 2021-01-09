@@ -39,18 +39,6 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    @PrePersist
-    public void prePersist(){
-        createdAt = LocalDateTime.now();
-        updatedAt = createdAt;
-    }
-    @PreUpdate
-    public void preUpdate(){
-        updatedAt = LocalDateTime.now();
-    }
-
-
-
     public Integer getId() {
         return Id;
     }
@@ -105,5 +93,15 @@ public class User {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @PrePersist
+    public void prePersist(){
+        createdAt = LocalDateTime.now();
+        updatedAt = createdAt;
+    }
+    @PreUpdate
+    public void preUpdate(){
+        updatedAt = LocalDateTime.now();
     }
 }

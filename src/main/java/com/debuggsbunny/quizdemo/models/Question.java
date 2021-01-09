@@ -12,10 +12,10 @@ public class Question {
     @Column
     private String description;
 
-    @OneToMany
+    @OneToMany(mappedBy = "question")
     private List<Option> options;
 
-    @OneToMany
+    @OneToMany(mappedBy = "question")
     private List<Option> answers;
 
 }

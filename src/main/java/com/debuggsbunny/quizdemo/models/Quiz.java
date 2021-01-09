@@ -31,7 +31,7 @@ public class Quiz {
     private Integer numOfQuestion;
 
     @Column
-    @OneToMany
+    @OneToMany(mappedBy = "quiz")
     private List<Question> questions;
 
     public Quiz() {
@@ -46,16 +46,6 @@ public class Quiz {
         this.updatedAt = updatedAt;
         this.numOfQuestion = numOfQuestion;
         this.questions = questions;
-    }
-
-    @PrePersist
-    public void prePersist(){
-        createdAt = LocalDateTime.now();
-        updatedAt = createdAt;
-    }
-    @PreUpdate
-    public void preUpdate(){
-        updatedAt = LocalDateTime.now();
     }
 
     public Integer getId() {
@@ -120,5 +110,15 @@ public class Quiz {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    @PrePersist
+    public void prePersist(){
+        createdAt = LocalDateTime.now();
+        updatedAt = createdAt;
+    }
+    @PreUpdate
+    public void preUpdate(){
+        updatedAt = LocalDateTime.now();
     }
 }
