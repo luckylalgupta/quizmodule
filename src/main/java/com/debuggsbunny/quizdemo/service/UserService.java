@@ -16,31 +16,19 @@ public class UserService  {
     public User addUser(User user){
         return userRepository.save(user);
     }
+
     public User getUserById(Integer id){
         return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User id " + id + " not found"));
     }
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
-    //update an User
+
     public User updateUser(User user) {
-        User userInfo= null;
-
-        if(user != null && user.getId() > 0) {
-
-            userInfo = getUserById(user.getId());
-
-            userInfo.setEmail(user.getEmail());
-
-            userInfo.setActive(user.isActive());
-
-            userInfo.setRole(user.getRole());
-
-        }
-        return userRepository.save(userInfo);
+        return userRepository.save(user);
     }
 
-    public Boolean deleteByUserID(Integer id) {
+    public Boolean deleteUserByID(Integer id) {
         User user = getUserById(id);
         if(null == user){
             return false;

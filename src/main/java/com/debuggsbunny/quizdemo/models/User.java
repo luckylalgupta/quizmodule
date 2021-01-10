@@ -5,9 +5,10 @@ import java.time.LocalDateTime;
 
 @Entity
 public class User {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
+
     @Column
     private String name;
 

@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -23,37 +23,34 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/createUser")
-    public User AddUser(@RequestBody User user){
-        logger.debug("Adding an user");
+    @PostMapping("/")
+    public User addUser(@RequestBody User user){
+        logger.debug("Adding a user "+user);
         return userService.addUser(user);
     }
 
-    @RequestMapping(value="/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User createOrUpdateBook(@RequestBody User user) {
-        logger.debug("updating an user");
-        if (user != null && StringUtils.isEmpty(user.getName()) ) {
-            throw new UserException("User name should not be empty.");
-        }
+    @PutMapping(value="/")
+    public User updateUser(@RequestBody User user) {
+        logger.debug("updating a user "+user);
         return userService.updateUser(user);
 
     }
-    @RequestMapping(value="/user/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/{id}")
     public boolean deleteUserById(@PathVariable("id") Integer id){
         if(id <= 0) {
             throw new UserNotFoundException("User Id is invalid. It must be greater than 0.");
         }
-        return userService.deleteByUserID(id);
+        return userService.deleteUserByID(id);
     }
 
-    @RequestMapping(value="/getUserById/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/{id}")
     public User getUserById(@PathVariable("id") Integer id){
         if(id <= 0) {
             throw new UserNotFoundException("User Id is invalid. It must be greater than 0.");
         }
         return userService.getUserById(id);
     }
-    @RequestMapping(value ="/getAllUser",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value ="/all")
     public List<User> getAllUser(){
         return userService.getAllUsers();
     }
