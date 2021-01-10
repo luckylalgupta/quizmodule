@@ -15,28 +15,21 @@ public class User {
     private String email;
 
     @Column
-    private boolean isActive;
+    private boolean active;
 
     @Column
     private Role role;
 
-    @Column
-    private LocalDateTime createdAt;
-
-    @Column
-    private LocalDateTime updatedAt;
-
     public User() {
     }
 
-    public User(Integer id, String name, String email, boolean isActive, Role role, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(Integer id, String name, String email, boolean active, Role role) {
         Id = id;
         this.name = name;
         this.email = email;
-        this.isActive = isActive;
+        this.active = active;
         this.role = role;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+
     }
 
     public Integer getId() {
@@ -64,11 +57,11 @@ public class User {
     }
 
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public Role getRole() {
@@ -79,29 +72,14 @@ public class User {
         this.role = role;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    @PrePersist
-    public void prePersist(){
-        createdAt = LocalDateTime.now();
-        updatedAt = createdAt;
-    }
-    @PreUpdate
-    public void preUpdate(){
-        updatedAt = LocalDateTime.now();
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", active=" + active +
+                ", role=" + role +
+                '}';
     }
 }
