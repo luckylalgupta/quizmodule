@@ -23,29 +23,37 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/user")
+    @PostMapping("/createUser")
     public User AddUser(@RequestBody User user){
+        logger.debug("Adding an user");
         return userService.addUser(user);
     }
 
-    @RequestMapping(value="/createOrUpdate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/updateUser", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public User createOrUpdateBook(@RequestBody User user) {
-        logger.debug("update an user");
+        logger.debug("updating an user");
         if (user != null && StringUtils.isEmpty(user.getName()) ) {
             throw new UserException("User name should not be empty.");
         }
         return userService.updateUser(user);
 
     }
+    @RequestMapping(value="/user/delete/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public boolean deleteUserById(@PathVariable("id") Integer id){
+        if(id <= 0) {
+            throw new UserNotFoundException("User Id is invalid. It must be greater than 0.");
+        }
+        return userService.deleteByUserID(id);
+    }
 
-    @RequestMapping(value="/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value="/getUserById/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User getUserById(@PathVariable("id") Integer id){
         if(id <= 0) {
             throw new UserNotFoundException("User Id is invalid. It must be greater than 0.");
         }
         return userService.getUserById(id);
     }
-    @RequestMapping(value ="/allUser",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value ="/getAllUser",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAllUser(){
         return userService.getAllUsers();
     }
