@@ -1,13 +1,14 @@
 package com.debuggsbunny.quizdemo.controller;
 
 import com.debuggsbunny.quizdemo.models.Quiz;
-import com.debuggsbunny.quizdemo.models.User;
-import com.debuggsbunny.quizdemo.repositories.QuizRepository;
 import com.debuggsbunny.quizdemo.service.QuizService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/quiz")
@@ -30,7 +31,13 @@ public class QuizController {
         return quizService.deleteQuizById(id);
     }
     @GetMapping("/{id}")
-    public Quiz getQuizById(@PathVariable("id") Integer id){
+    public Optional<Quiz> getQuizById(@PathVariable("id") Integer id){
         return quizService.getQuizById(id);
     }
+
+    @GetMapping("/")
+    public List<Quiz> getAllQuiz(){
+        return quizService.getAllQuestion();
+    }
+
 }

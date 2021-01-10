@@ -5,6 +5,7 @@ import com.debuggsbunny.quizdemo.repositories.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,5 +32,9 @@ public class QuizService {
 
     public Optional<Quiz> getQuizById(Integer id) {
         return quizRepository.findById(id);
+    }
+
+    public List<Quiz> getAllQuestion() {
+        return quizRepository.findAll();
     }
 }

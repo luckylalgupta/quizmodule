@@ -1,14 +1,12 @@
 package com.debuggsbunny.quizdemo.controller;
 
-import com.debuggsbunny.quizdemo.exception.UserException;
 import com.debuggsbunny.quizdemo.exception.UserNotFoundException;
+import com.debuggsbunny.quizdemo.models.Role;
 import com.debuggsbunny.quizdemo.models.User;
 import com.debuggsbunny.quizdemo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,7 +23,6 @@ public class UserController {
 
     @PostMapping("/")
     public User addUser(@RequestBody User user){
-        logger.debug("Adding a user "+user);
         return userService.addUser(user);
     }
 
