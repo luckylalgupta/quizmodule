@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value ="/api/option")
 public class OptionController {
+
     @Autowired
     private OptionService optionService;
+    
     @PostMapping("/")
     public Option addOption(@RequestBody Option option){
         return optionService.addOption(option);

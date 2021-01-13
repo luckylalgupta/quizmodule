@@ -11,9 +11,6 @@ public class Response {
     private Integer id;
 
     @ManyToOne
-    private Result result;
-
-    @ManyToOne
     private Question question;
 
     @ManyToOne

@@ -15,17 +15,17 @@ public class Question {
     @OneToMany
     private List<Option> options;
 
-    @Column
-    private String answer;
+    @OneToMany
+    private List<Option> answers;
 
     public Question() {
     }
 
-    public Question(Integer id, String description, List<Option> options, String answer) {
+    public Question(Integer id, String description, List<Option> options, List<Option> answers) {
         this.id = id;
         this.description = description;
         this.options = options;
-        this.answer = answer;
+        this.answers = answers;
     }
 
     public Integer getId() {
@@ -52,11 +52,11 @@ public class Question {
         this.options = options;
     }
 
-    public String getAnswer() {
-        return answer;
+    public List<Option> getAnswers() {
+        return answers;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setAnswers(List<Option> answers) {
+        this.answers = answers;
     }
 }

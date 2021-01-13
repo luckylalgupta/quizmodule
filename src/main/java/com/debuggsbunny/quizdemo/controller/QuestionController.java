@@ -1,6 +1,6 @@
 package com.debuggsbunny.quizdemo.controller;
 
-
+import com.debuggsbunny.quizdemo.models.Option;
 import com.debuggsbunny.quizdemo.models.Question;
 import com.debuggsbunny.quizdemo.service.QuestionService;
 import org.slf4j.Logger;
@@ -44,4 +44,17 @@ public class QuestionController {
         return questionService.getAllQuestion();
     }
 
+    @PutMapping(value = "/{questionId}/options")
+    public Question addOptions(@PathVariable("questionId") Integer questionId, @RequestBody List<Option> options){
+        Optional<Question> question = questionService.getQuestionById(questionId);
+        question.get().setOptions(options);
+        return questionService.updateQuestion(question.get());
+    }
+
+    @PutMapping(value = "/{questionId}/answers")
+    public Question addAnswers(@PathVariable("questionId") Integer questionId, @RequestBody List<Option> answers){
+        Optional<Question> question = questionService.getQuestionById(questionId);
+        question.get().setAnswers(answers);
+        return questionService.updateQuestion(question.get());
+    }
 }

@@ -24,10 +24,6 @@ public class Game {
     @ManyToOne
     private User player;
 
-
-    @OneToOne
-    private Result result;
-
     @OneToMany
     private List<Response> responses;
 

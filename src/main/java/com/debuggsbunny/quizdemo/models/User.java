@@ -1,7 +1,6 @@
 package com.debuggsbunny.quizdemo.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 public class User {

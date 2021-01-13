@@ -1,8 +1,5 @@
 package com.debuggsbunny.quizdemo.models;
 
-
-import com.sun.javafx.geom.transform.Identity;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
