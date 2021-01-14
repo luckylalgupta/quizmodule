@@ -1,7 +1,14 @@
 package com.debuggsbunny.quizdemo.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+
 import javax.persistence.*;
+
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,15 +20,19 @@ public class Quiz {
     @Column
     private String name;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column
-    private LocalDateTime startDate;
+    private Date startDate;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column
-    private LocalDateTime endDate;
+    private Date endDate;
 
+    @CreationTimestamp
     @Column
     private LocalDateTime createdAt;
 
+    @UpdateTimestamp
     @Column
     private LocalDateTime updatedAt;
 
@@ -34,7 +45,7 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(Integer id, String name, LocalDateTime startDate, LocalDateTime endDate, LocalDateTime createdAt, LocalDateTime updatedAt, Integer numOfQuestion, List<Question> questions) {
+    public Quiz(Integer id, String name, Date startDate, Date endDate, LocalDateTime createdAt, LocalDateTime updatedAt, Integer numOfQuestion, List<Question> questions) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -61,19 +72,19 @@ public class Quiz {
         this.name = name;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
@@ -109,13 +120,5 @@ public class Quiz {
         this.questions = questions;
     }
 
-    @PrePersist
-    public void prePersist(){
-        createdAt = LocalDateTime.now();
-        updatedAt = createdAt;
-    }
-    @PreUpdate
-    public void preUpdate(){
-        updatedAt = LocalDateTime.now();
-    }
+
 }

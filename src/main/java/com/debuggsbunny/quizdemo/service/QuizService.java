@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Service
 public class QuizService {
+
     @Autowired
     private QuizRepository quizRepository;
 
@@ -18,7 +19,7 @@ public class QuizService {
     }
 
     public Quiz updateQuiz(Quiz quiz) {
-        return quizRepository.save(quiz);
+        return quizRepository.saveAndFlush(quiz);
     }
 
     public boolean deleteQuizById(Integer id) {
@@ -34,7 +35,7 @@ public class QuizService {
         return quizRepository.findById(id);
     }
 
-    public List<Quiz> getAllQuestion() {
+    public List<Quiz> getAllQuiz() {
         return quizRepository.findAll();
     }
 }

@@ -22,7 +22,7 @@ public class QuestionService {
     }
 
     public Question updateQuestion(Question question) {
-        return questionRepository.save(question);
+        return questionRepository.saveAndFlush(question);
     }
 
     public boolean deleteQuestionById(Integer id) {

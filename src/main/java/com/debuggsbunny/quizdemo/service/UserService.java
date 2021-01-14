@@ -25,7 +25,7 @@ public class UserService  {
     }
 
     public User updateUser(User user) {
-        return userRepository.save(user);
+        return userRepository.saveAndFlush(user);
     }
 
     public Boolean deleteUserByID(Integer id) {

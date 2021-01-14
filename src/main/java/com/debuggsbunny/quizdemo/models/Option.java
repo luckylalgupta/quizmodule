@@ -1,7 +1,5 @@
 package com.debuggsbunny.quizdemo.models;
 
-
-
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +13,9 @@ public class Option {
 
     @Column
     private Choice choice;
+
+    @ManyToOne
+    private Question question;
 
     public Option() {
     }

@@ -22,14 +22,17 @@ public class QuizController {
     public Quiz addQuiz(@RequestBody Quiz quiz){
        return quizService.addQuiz(quiz);
     }
+
     @PutMapping("/")
     public Quiz updateQuiz(@RequestBody Quiz quiz){
         return quizService.updateQuiz(quiz);
     }
+
     @DeleteMapping("/")
     public boolean deleteQuizById(@PathVariable("id") Integer id){
         return quizService.deleteQuizById(id);
     }
+
     @GetMapping("/{id}")
     public Optional<Quiz> getQuizById(@PathVariable("id") Integer id){
         return quizService.getQuizById(id);
@@ -37,7 +40,7 @@ public class QuizController {
 
     @GetMapping("/")
     public List<Quiz> getAllQuiz(){
-        return quizService.getAllQuestion();
+        return quizService.getAllQuiz();
     }
 
 }
