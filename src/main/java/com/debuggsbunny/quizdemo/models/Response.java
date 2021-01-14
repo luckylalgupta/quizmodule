@@ -1,7 +1,5 @@
 package com.debuggsbunny.quizdemo.models;
 
-import jdk.nashorn.internal.codegen.OptimisticTypesPersistence;
-
 import javax.persistence.*;
 import java.util.List;
 

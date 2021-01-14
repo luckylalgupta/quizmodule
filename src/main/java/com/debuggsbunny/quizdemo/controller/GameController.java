@@ -1,6 +1,7 @@
 package com.debuggsbunny.quizdemo.controller;
 
 import com.debuggsbunny.quizdemo.models.Game;
+import com.debuggsbunny.quizdemo.models.Response;
 import com.debuggsbunny.quizdemo.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -40,10 +41,10 @@ public class GameController {
         return gameService.deleteGameById(id);
     }
 
-    @GetMapping("/{id}/status")
-    public String getGameStatusById(@PathVariable("id") Integer id){
-        return gameService.getGameStatusById(id);
+    @PutMapping("/{gameId}/responses")
+    public Game addResponses(@PathVariable("gameId") Integer gameId, @RequestBody List<Response> responses){
+        Optional<Game> game = gameService.getGameById(gameId);
+        game.get().setResponses(responses);
+        return game.get();
     }
-
-
 }
