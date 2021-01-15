@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/response")
+@RequestMapping("/api/response")
 public class ResponseController {
 
     @Autowired
