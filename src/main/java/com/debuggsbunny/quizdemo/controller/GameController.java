@@ -43,8 +43,11 @@ public class GameController {
 
     @PutMapping("/{gameId}/responses")
     public Game addResponses(@PathVariable("gameId") Integer gameId, @RequestBody List<Response> responses){
-        Optional<Game> game = gameService.getGameById(gameId);
-        game.get().setResponses(responses);
-        return game.get();
+        Game game = gameService.getGameById(gameId).get();
+        game.setResponses(responses);
+        gameService.updateGame(game);
+        return game;
     }
+
+
 }

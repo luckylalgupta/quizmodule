@@ -27,7 +27,7 @@ public class GameService {
     }
 
     public Game updateGame(Game game) {
-        return gameRepository.saveAndFlush(game);
+        return gameRepository.save(game);
     }
 
     public boolean deleteGameById(Integer id) {

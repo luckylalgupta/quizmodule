@@ -1,7 +1,9 @@
 package com.debuggsbunny.quizdemo.controller;
 
 import com.debuggsbunny.quizdemo.models.Option;
+import com.debuggsbunny.quizdemo.models.Question;
 import com.debuggsbunny.quizdemo.models.Response;
+import com.debuggsbunny.quizdemo.service.QuestionService;
 import com.debuggsbunny.quizdemo.service.ResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,35 +16,37 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/response")
 public class ResponseController {
+
     @Autowired
     private ResponseService responseService;
 
+    @Autowired
+    private QuestionService questionService;
+
     @PostMapping("/")
-    public Response checkResponse(@RequestBody Response response){
-        List<Integer> quesAnswers = response.getQuestion().getAnswers().stream().map(item -> item.getId()).collect(Collectors.toList());
-        List<Integer> userAnswers = response.getUserAnswers().stream().map(item -> item.getId()).collect(Collectors.toList());
+    public Response addResponse(@RequestBody Response response){
+        Question question = questionService.getQuestionById(response.getQuestion().getId()).get();
+        List<Integer> quesAnswers = question.getAnswers().stream().map(item -> item.getId()).collect(Collectors.toList());
+        List<Integer> userAnswers = response.getAnswers().stream().map(item -> item.getId()).collect(Collectors.toList());
         Collections.sort(quesAnswers);
         Collections.sort(userAnswers);
+
         if (quesAnswers.size() != userAnswers.size()){
             response.setCorrect(false);
         }else{
-            int count = 0;
-            for (Integer i : quesAnswers){
-                if (i == userAnswers.get(count)){
+            response.setCorrect(true);
+            for (int count = 0; count < quesAnswers.size(); count++){
+                if (quesAnswers.get(count) != userAnswers.get(count)){
                     response.setCorrect(false);
                     break;
                 }
-                count++;
-            }
-            if (count == quesAnswers.size()){
-                response.setCorrect(true);
             }
         }
 
         return responseService.saveResponse(response);
     }
 
-    @GetMapping("/")
+    @GetMapping("/{id}")
     public Optional<Response> getResponseById(@PathVariable("id") Integer id ){
         return responseService.getResponseById(id);
     }

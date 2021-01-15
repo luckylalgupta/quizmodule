@@ -12,8 +12,8 @@ public class Response {
     @ManyToOne
     private Question question;
 
-    @ManyToMany
-    private List<Option> userAnswers;
+    @OneToMany
+    private List<Option> answers;
 
     @ManyToOne
     private Game game;
@@ -37,12 +37,12 @@ public class Response {
         this.question = question;
     }
 
-    public List<Option> getUserAnswers() {
-        return userAnswers;
+    public List<Option> getAnswers() {
+        return answers;
     }
 
-    public void setUserAnswers(List<Option> userAnswers) {
-        this.userAnswers = userAnswers;
+    public void setAnswers(List<Option> answers) {
+        this.answers = answers;
     }
 
     public Game getGame() {
@@ -64,10 +64,10 @@ public class Response {
     public Response() {
     }
 
-    public Response(Integer id, Question question, List<Option> userAnswers, Game game, Boolean isCorrect) {
+    public Response(Integer id, Question question, List<Option> answers, Game game, Boolean isCorrect) {
         this.id = id;
         this.question = question;
-        this.userAnswers = userAnswers;
+        this.answers = answers;
         this.game = game;
         this.isCorrect = isCorrect;
     }
@@ -77,7 +77,7 @@ public class Response {
         return "Response{" +
                 "id=" + id +
                 ", question=" + question +
-                ", userAnswers=" + userAnswers +
+                ", answers=" + answers +
                 ", game=" + game +
                 ", isCorrect=" + isCorrect +
                 '}';
