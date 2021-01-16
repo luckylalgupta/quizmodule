@@ -13,12 +13,20 @@ this data using api call.
       "role":"ADMIN"
     }
 
-#For adding options I am making api call
+#For adding option I am making POST api call "http://localhost:8888/api/option/"
 
     {
       "value":"don't know",
       "choice":"A"    
     }
+    
+#Similary for adding 2nd option I am making same call with different values
+ 
+    {
+      "value":"Infinite,
+      "choice":"B"    
+    }
+
 
 #For adding question I making api call "http://localhost:8888/api/question/"
 In Body I am passing
@@ -57,13 +65,7 @@ For adding name of the quiz, number of questions, Start date and End date, Quest
           [
               {
                   "id": 1 
-              },
-              {
-                  "id": 2  
-              },
-              {
-                  "id": 3   
-              }
+              } 
           ]
     }
 
@@ -99,12 +101,12 @@ For adding name of the quiz, number of questions, Start date and End date, Quest
         
         "answers": 
         [
-            {"id": 7}
+            {"id": 2}
         ],
         
         "question": 
         {
-            "id": 2
+            "id": 1
         }
     }
     
