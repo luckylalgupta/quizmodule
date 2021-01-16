@@ -43,7 +43,11 @@ In Body I am passing
              "id": 2
           }
       ],
-      "answer": "B"
+      "answer":[
+          {
+              "id":2
+          }
+      ]
     }
 For adding answers to the question I am making an PUT api call "http://localhost:8888/api/question/1/answers"
 
